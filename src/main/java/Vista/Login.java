@@ -2,7 +2,12 @@
 package Vista;
 
 import Controlador.Controlador_Login;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import static java.awt.image.ImageObserver.WIDTH;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 
 public class Login extends javax.swing.JFrame {
@@ -10,6 +15,8 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         setLocationRelativeTo(null);
+//        setIconImage((Image) icono("/img/logo.png", 50, 50));
+setIconImage(getIconImage());
     }
 
 
@@ -160,7 +167,19 @@ public class Login extends javax.swing.JFrame {
     public static javax.swing.JPasswordField txt_password;
     public static javax.swing.JTextField txt_username;
     // End of variables declaration//GEN-END:variables
-
+    
+    public Image getIconImage(){
+        
+        Image retValue=Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("img/logo.png"));
+        return retValue;
+    }
+    
+    public Icon icono(String ruta, int ancho, int alto) {
+        //ImageIcon imagen = new ImageIcon(ruta);
+        Icon img = new ImageIcon(new ImageIcon(getClass().getResource(ruta)).getImage().getScaledInstance(ancho, alto, WIDTH));
+        return img;
+    }
+    
     public void mixto(JTextField txt, int tamMax, KeyEvent evt) {
         char c = evt.getKeyChar();
 

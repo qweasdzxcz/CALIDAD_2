@@ -5,8 +5,10 @@ import Controlador.Controlador_Categoria;
 import Controlador.Controlador_Login;
 
 import Controlador.Controlador_Producto;
+import Controlador.Controlador_Entrada;
 import Vista.Usuario.formUsuario;
 import Controlador.Controlador_Usuario;
+import Vista.Entrada.BusquedaProductoEntrada;
 
 
 import Vista.Producto.formProducto;
@@ -59,9 +61,8 @@ public class Principal extends javax.swing.JFrame {
         btn_usuarios = new javax.swing.JButton();
         btn_productos = new javax.swing.JButton();
         btn_categorias = new javax.swing.JButton();
-        btn_nuevasVentas = new javax.swing.JButton();
         btn_ventas = new javax.swing.JButton();
-        btn_clientes = new javax.swing.JButton();
+        btn_entradas = new javax.swing.JButton();
         tabed = new javax.swing.JTabbedPane();
         panel_productos = new javax.swing.JPanel();
         btn_nuevoProducto = new javax.swing.JButton();
@@ -69,6 +70,20 @@ public class Principal extends javax.swing.JFrame {
         productoTabla = new javax.swing.JTable();
         BusquedaDeProductoPorNOmbre = new javax.swing.JLabel();
         txt_buscarProducto = new javax.swing.JTextField();
+        panel_entradas = new javax.swing.JPanel();
+        txt_cantidadEntrada = new javax.swing.JTextField();
+        btn_buscarProductoEntrada = new javax.swing.JButton();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        nuevaEntradaTabla = new javax.swing.JTable();
+        Nombre1 = new javax.swing.JLabel();
+        btn_generarEntrada = new javax.swing.JButton();
+        lbl_nombreEntrada = new javax.swing.JLabel();
+        Cantidad1 = new javax.swing.JLabel();
+        btn_agregarTablaEntrada = new javax.swing.JButton();
+        lbl_stockEntrada = new javax.swing.JLabel();
+        lbl_idProductoEntrada = new javax.swing.JLabel();
+        lbl_idCliente1 = new javax.swing.JLabel();
+        Stock1 = new javax.swing.JLabel();
         panel_ventas = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         ventasTabla = new javax.swing.JTable();
@@ -235,20 +250,15 @@ public class Principal extends javax.swing.JFrame {
         btn_categorias.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panel_menu.add(btn_categorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 160, 40));
 
-        btn_nuevasVentas.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        btn_nuevasVentas.setText("Nueva Venta");
-        btn_nuevasVentas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        panel_menu.add(btn_nuevasVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 160, 40));
-
         btn_ventas.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        btn_ventas.setText("Ventas");
+        btn_ventas.setText("Salidas");
         btn_ventas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panel_menu.add(btn_ventas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 160, 40));
 
-        btn_clientes.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        btn_clientes.setText("Clientes");
-        btn_clientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        panel_menu.add(btn_clientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 160, 40));
+        btn_entradas.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btn_entradas.setText("Entradas");
+        btn_entradas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panel_menu.add(btn_entradas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 160, 40));
 
         panel_fondo.add(panel_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 180, 650));
 
@@ -316,6 +326,106 @@ public class Principal extends javax.swing.JFrame {
         panel_productos.add(txt_buscarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 300, 30));
 
         tabed.addTab("tab2", panel_productos);
+
+        panel_entradas.setBackground(new java.awt.Color(255, 255, 255));
+        panel_entradas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panel_entradas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txt_cantidadEntrada.setBackground(new java.awt.Color(255, 255, 255));
+        txt_cantidadEntrada.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        txt_cantidadEntrada.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_cantidadEntradaKeyTyped(evt);
+            }
+        });
+        panel_entradas.add(txt_cantidadEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 70, 80, 30));
+
+        btn_buscarProductoEntrada.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btn_buscarProductoEntrada.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search_40px.png"))); // NOI18N
+        btn_buscarProductoEntrada.setText("Producto");
+        btn_buscarProductoEntrada.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panel_entradas.add(btn_buscarProductoEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 150, 50));
+
+        nuevaEntradaTabla.setBackground(new java.awt.Color(255, 255, 255));
+        nuevaEntradaTabla.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        nuevaEntradaTabla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "ITEM", "NOMBRE", "CANTIDAD"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        nuevaEntradaTabla.setRowHeight(30);
+        nuevaEntradaTabla.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        nuevaEntradaTabla.setShowHorizontalLines(true);
+        nuevaEntradaTabla.getTableHeader().setResizingAllowed(false);
+        nuevaEntradaTabla.getTableHeader().setReorderingAllowed(false);
+        jScrollPane7.setViewportView(nuevaEntradaTabla);
+        if (nuevaEntradaTabla.getColumnModel().getColumnCount() > 0) {
+            nuevaEntradaTabla.getColumnModel().getColumn(0).setMinWidth(0);
+            nuevaEntradaTabla.getColumnModel().getColumn(0).setPreferredWidth(0);
+            nuevaEntradaTabla.getColumnModel().getColumn(0).setMaxWidth(0);
+            nuevaEntradaTabla.getColumnModel().getColumn(1).setResizable(false);
+            nuevaEntradaTabla.getColumnModel().getColumn(1).setPreferredWidth(0);
+            nuevaEntradaTabla.getColumnModel().getColumn(2).setResizable(false);
+            nuevaEntradaTabla.getColumnModel().getColumn(2).setPreferredWidth(200);
+            nuevaEntradaTabla.getColumnModel().getColumn(3).setResizable(false);
+            nuevaEntradaTabla.getColumnModel().getColumn(3).setPreferredWidth(50);
+        }
+
+        panel_entradas.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 960, -1));
+
+        Nombre1.setBackground(new java.awt.Color(0, 0, 0));
+        Nombre1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        Nombre1.setForeground(new java.awt.Color(0, 0, 0));
+        Nombre1.setText("Nombre");
+        panel_entradas.add(Nombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, 90, 20));
+
+        btn_generarEntrada.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btn_generarEntrada.setText("Generar Venta");
+        btn_generarEntrada.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panel_entradas.add(btn_generarEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 560, 210, 50));
+
+        lbl_nombreEntrada.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        panel_entradas.add(lbl_nombreEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 70, 260, 30));
+
+        Cantidad1.setBackground(new java.awt.Color(0, 0, 0));
+        Cantidad1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        Cantidad1.setForeground(new java.awt.Color(0, 0, 0));
+        Cantidad1.setText("Cantidad");
+        panel_entradas.add(Cantidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 50, 80, 20));
+
+        btn_agregarTablaEntrada.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        btn_agregarTablaEntrada.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buy_40px.png"))); // NOI18N
+        btn_agregarTablaEntrada.setText("Añadir");
+        btn_agregarTablaEntrada.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panel_entradas.add(btn_agregarTablaEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 50, 130, 50));
+
+        lbl_stockEntrada.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        panel_entradas.add(lbl_stockEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 70, 80, 30));
+
+        lbl_idProductoEntrada.setForeground(new java.awt.Color(255, 255, 255));
+        panel_entradas.add(lbl_idProductoEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 50, 20));
+
+        lbl_idCliente1.setForeground(new java.awt.Color(255, 255, 255));
+        panel_entradas.add(lbl_idCliente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 540, 50, 20));
+
+        Stock1.setBackground(new java.awt.Color(0, 0, 0));
+        Stock1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        Stock1.setForeground(new java.awt.Color(0, 0, 0));
+        Stock1.setText("Stock");
+        panel_entradas.add(Stock1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 50, 80, 20));
+
+        tabed.addTab("tab4", panel_entradas);
 
         panel_ventas.setBackground(new java.awt.Color(255, 255, 255));
         panel_ventas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -851,6 +961,10 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_buscarUsuarioKeyTyped
 
+    private void txt_cantidadEntradaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cantidadEntradaKeyTyped
+        soloNumeros(txt_cantidadEntrada, 3, evt);
+    }//GEN-LAST:event_txt_cantidadEntradaKeyTyped
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -884,13 +998,13 @@ public class Principal extends javax.swing.JFrame {
                 editUsuario e = new editUsuario(new javax.swing.JFrame(), true);
                 formProducto fp = new formProducto(new javax.swing.JFrame(), true);
                 editProducto ep = new editProducto(new javax.swing.JFrame(), true);
-                BusquedaProducto busProducto = new BusquedaProducto(new javax.swing.JFrame(), true);
+                BusquedaProductoEntrada busProducto = new BusquedaProductoEntrada(new javax.swing.JFrame(), true);
                
                 
                 Controlador_Usuario cu = new Controlador_Usuario(p, f, e);
                 Controlador_Categoria cc = new Controlador_Categoria(p);
                 Controlador_Producto cp = new Controlador_Producto(p, fp, ep);
-
+                Controlador_Entrada ce = new Controlador_Entrada(p, busProducto);
                
                 
                 Controlador_Login clogin= new Controlador_Login(l, p);
@@ -912,20 +1026,24 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel BusquedaDeProductoPorNOmbre;
     private javax.swing.JLabel BusquedaPorApellidoPaterno;
     private javax.swing.JLabel Cantidad;
+    private javax.swing.JLabel Cantidad1;
     private javax.swing.JLabel Cliente;
     private javax.swing.JLabel Nombre;
+    private javax.swing.JLabel Nombre1;
     private javax.swing.JLabel Precio;
     private javax.swing.JLabel RegistroDeVentas;
     private javax.swing.JLabel Stock;
+    private javax.swing.JLabel Stock1;
     private javax.swing.JLabel Total;
     private javax.swing.JPanel barraEmpresa;
     public javax.swing.JButton btn_actualizarCategoria;
     public javax.swing.JButton btn_agregarTabla;
+    public javax.swing.JButton btn_agregarTablaEntrada;
     public javax.swing.JButton btn_buscarCliente;
     public javax.swing.JButton btn_buscarProducto;
+    public javax.swing.JButton btn_buscarProductoEntrada;
     public javax.swing.JButton btn_categorias;
     public javax.swing.JButton btn_cerrarSesion;
-    public javax.swing.JButton btn_clientes;
     public javax.swing.JMenuItem btn_editarCategoria;
     public javax.swing.JMenuItem btn_editarCliente;
     public javax.swing.JMenuItem btn_editarProducto;
@@ -933,8 +1051,9 @@ public class Principal extends javax.swing.JFrame {
     public javax.swing.JMenuItem btn_eliminarCliente;
     public javax.swing.JMenuItem btn_eliminarPedido;
     public javax.swing.JMenuItem btn_eliminarUsuario;
+    public javax.swing.JButton btn_entradas;
+    public javax.swing.JButton btn_generarEntrada;
     public javax.swing.JButton btn_generarVenta;
-    public javax.swing.JButton btn_nuevasVentas;
     public javax.swing.JButton btn_nuevoCliente;
     public javax.swing.JButton btn_nuevoProducto;
     public javax.swing.JButton btn_nuevoUsuario;
@@ -967,22 +1086,29 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     public static javax.swing.JLabel lbl_cliente;
     public static javax.swing.JLabel lbl_datos;
     public static javax.swing.JLabel lbl_idCategoria;
     public static javax.swing.JLabel lbl_idCliente;
+    public static javax.swing.JLabel lbl_idCliente1;
     public static javax.swing.JLabel lbl_idProducto;
+    public static javax.swing.JLabel lbl_idProductoEntrada;
     public static javax.swing.JLabel lbl_idUsuario;
     public static javax.swing.JLabel lbl_nombre;
     private javax.swing.JLabel lbl_nombreEmpresa;
+    public static javax.swing.JLabel lbl_nombreEntrada;
     public static javax.swing.JLabel lbl_precio;
     public static javax.swing.JLabel lbl_stock;
+    public static javax.swing.JLabel lbl_stockEntrada;
     public static javax.swing.JLabel lbl_total;
+    public static javax.swing.JTable nuevaEntradaTabla;
     public static javax.swing.JTable nuevaVentaTabla;
     public static javax.swing.JPanel panel_cat;
     public static javax.swing.JPanel panel_categorias;
     public static javax.swing.JPanel panel_clientes;
     public static javax.swing.JPanel panel_configuracion;
+    public static javax.swing.JPanel panel_entradas;
     private javax.swing.JPanel panel_fondo;
     private javax.swing.JPanel panel_menu;
     public static javax.swing.JPanel panel_nuevasVentas;
@@ -1003,6 +1129,7 @@ public class Principal extends javax.swing.JFrame {
     public static javax.swing.JTextField txt_buscarProducto;
     public static javax.swing.JTextField txt_buscarUsuario;
     public static javax.swing.JTextField txt_cantidad;
+    public static javax.swing.JTextField txt_cantidadEntrada;
     public static javax.swing.JTextField txt_nombreCat;
     public static javax.swing.JTable usuarioTabla;
     public static javax.swing.JTable ventasTabla;
