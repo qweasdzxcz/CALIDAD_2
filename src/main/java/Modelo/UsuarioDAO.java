@@ -180,10 +180,10 @@ public class UsuarioDAO {
             ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             ps.execute();
-            return 0;
+            return 1;
         } catch (SQLException e) {
             System.out.println(e.toString());
-            return 1;
+            return 0;
         }
     }
 

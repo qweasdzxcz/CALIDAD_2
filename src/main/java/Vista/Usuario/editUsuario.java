@@ -62,9 +62,19 @@ public class editUsuario extends javax.swing.JDialog {
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 60));
 
         txt_nombre.setBackground(new java.awt.Color(255, 255, 255));
+        txt_nombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_nombreKeyTyped(evt);
+            }
+        });
         jPanel1.add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 200, 30));
 
         txt_paterno.setBackground(new java.awt.Color(255, 255, 255));
+        txt_paterno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_paternoKeyTyped(evt);
+            }
+        });
         jPanel1.add(txt_paterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, 200, 30));
 
         error_nombre.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -78,6 +88,11 @@ public class editUsuario extends javax.swing.JDialog {
         jPanel1.add(error_paterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 200, -1));
 
         txt_materno.setBackground(new java.awt.Color(255, 255, 255));
+        txt_materno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_maternoKeyTyped(evt);
+            }
+        });
         jPanel1.add(txt_materno, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 200, 30));
 
         error_materno.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -196,6 +211,18 @@ public class editUsuario extends javax.swing.JDialog {
     private void btn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualizarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_actualizarActionPerformed
+
+    private void txt_nombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreKeyTyped
+        soloLetras(txt_nombre, 30, evt);
+    }//GEN-LAST:event_txt_nombreKeyTyped
+
+    private void txt_paternoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_paternoKeyTyped
+        soloLetras(txt_paterno, 30, evt);
+    }//GEN-LAST:event_txt_paternoKeyTyped
+
+    private void txt_maternoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_maternoKeyTyped
+        soloLetras(txt_materno, 30, evt);
+    }//GEN-LAST:event_txt_maternoKeyTyped
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

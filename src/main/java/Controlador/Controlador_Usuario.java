@@ -134,13 +134,13 @@ public class Controlador_Usuario implements ActionListener {
             lbl.setText("Campo obligatorio");
             return false;
         }
-        if (tamaño != 0) {
-            if (txt.getText().length() < tamaño) {
-                lbl.setVisible(true);
-                lbl.setText("El campo debe contener " + tamaño + " digitos");
-                return false;
-            }
+
+        if (txt.getText().length() < tamaño) {
+            lbl.setVisible(true);
+            lbl.setText("El campo debe contener " + tamaño + " digitos");
+            return false;
         }
+
         switch (nombreColumna) {
             case "dni" -> {
                 int v = usuarioDAO.validarDni(txt.getText());
@@ -160,16 +160,30 @@ public class Controlador_Usuario implements ActionListener {
                 }
                 return true;
             }
-            case "username" -> {
-                int v = usuarioDAO.validarUsername(txt.getText());
-                if (v > 0) {
-                    lbl.setVisible(true);
-                    lbl.setText("Esta registrado, intente con otro");
-
-                    return false;
-                }
-            }
         }
+        lbl.setVisible(false);
+        return true;
+    }
+
+    public boolean validarUsername(JTextField txt, JLabel lbl, int tamaño, String opcion) {
+        if (txt.getText().isEmpty() || txt.getText().isBlank()) {
+            lbl.setVisible(true);
+            lbl.setText("Campo obligatorio");
+            return false;
+        }
+        if (txt.getText().length() < tamaño) {
+            lbl.setVisible(true);
+            lbl.setText("Debe contener minimo " + tamaño + " caracteres");
+            return false;
+        }
+        int v = usuarioDAO.validarUsername(txt.getText());
+        if (v > 0 && opcion.equals("R")) {
+            lbl.setVisible(true);
+            lbl.setText("Esta registrado, intente con otro");
+
+            return false;
+        }
+
         lbl.setVisible(false);
         return true;
     }
@@ -184,10 +198,11 @@ public class Controlador_Usuario implements ActionListener {
         return true;
     }
 
-    public void registrarUsuario() {
+  public void registrarUsuario() {
+        ocultarErrores();
         if (validar(txt_nombre, error_nombre) != false && validar(txt_paterno, error_paterno) != false && validar(txt_materno, error_materno) != false
                 && validarTamañoDuplicado(txt_dni, error_dni, 8, "dni", "R") != false && validarTamañoDuplicado(txt_celular, error_celular, 9, "celular", "R") != false
-                && validarTamañoDuplicado(txt_username, error_username, 0, "username", "R") != false && validar(txt_password, error_password) != false
+                && validarUsername(txt_username, error_username, 8, "R") != false && validar(txt_password, error_password) != false
                 && validarCbx(cbx_rol, error_rol) != false) {
             String encriptado = Encriptar.sha1(txt_password.getText());
             usuario.setNombre(txt_nombre.getText());
@@ -247,10 +262,10 @@ public class Controlador_Usuario implements ActionListener {
             int id = Integer.parseInt(principal.usuarioTabla.getValueAt(fila, 0).toString());
             int rpta = usuarioDAO.eliminarUsuario(id);
             if (rpta == 0) {
-                JOptionPane.showMessageDialog(principal, "Usuario Eliminado", "MENSAJE", JOptionPane.PLAIN_MESSAGE, icono("/img/error.png", 50, 50));
+                JOptionPane.showMessageDialog(principal, "No se pudo eliminar", "MENSAJE", JOptionPane.PLAIN_MESSAGE, icono("/img/error.png", 50, 50));
             } else {
                 limpiarTablaUsusario();
-                listarUsuario(principal.usuarioTabla);
+                listarUsuario(usuarioTabla);
                 JOptionPane.showMessageDialog(principal, "Usuario Eliminado", "MENSAJE", JOptionPane.PLAIN_MESSAGE, icono("/img/ok.png", 50, 50));
             }
 
@@ -272,7 +287,7 @@ public class Controlador_Usuario implements ActionListener {
 
     }
 
-    public void actualizarUsuario() {
+   public void actualizarUsuario() {
         if (validar(editUsuario.txt_nombre, editUsuario.error_nombre) != false && validar(editUsuario.txt_paterno, editUsuario.error_paterno) != false && validar(editUsuario.txt_materno, editUsuario.error_materno) != false
                 && validarTamañoDuplicado(editUsuario.txt_dni, editUsuario.error_dni, 8, "dni", "A") != false && validarTamañoDuplicado(editUsuario.txt_celular, editUsuario.error_celular, 9, "celular", "A") != false
                 && validarCbx(editUsuario.cbx_rol, editUsuario.error_rol) != false && validarCbx(editUsuario.cbx_estado, editUsuario.error_estado) != false) {

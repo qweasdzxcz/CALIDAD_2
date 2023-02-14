@@ -2,6 +2,8 @@
 package Vista;
 
 import Controlador.Controlador_Login;
+import java.awt.event.KeyEvent;
+import javax.swing.JTextField;
 
 public class Login extends javax.swing.JFrame {
 
@@ -47,10 +49,20 @@ public class Login extends javax.swing.JFrame {
 
         txt_username.setBackground(new java.awt.Color(255, 255, 255));
         txt_username.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        txt_username.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_usernameKeyTyped(evt);
+            }
+        });
         jPanel1.add(txt_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 200, 30));
 
         txt_password.setBackground(new java.awt.Color(255, 255, 255));
         txt_password.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        txt_password.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_passwordKeyTyped(evt);
+            }
+        });
         jPanel1.add(txt_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 200, 30));
 
         btn_ingresar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -90,6 +102,14 @@ public class Login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txt_usernameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_usernameKeyTyped
+        mixto(txt_username, 15, evt);
+    }//GEN-LAST:event_txt_usernameKeyTyped
+
+    private void txt_passwordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_passwordKeyTyped
+        mixto(txt_password, 10, evt);
+    }//GEN-LAST:event_txt_passwordKeyTyped
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -140,4 +160,17 @@ public class Login extends javax.swing.JFrame {
     public static javax.swing.JPasswordField txt_password;
     public static javax.swing.JTextField txt_username;
     // End of variables declaration//GEN-END:variables
+
+    public void mixto(JTextField txt, int tamMax, KeyEvent evt) {
+        char c = evt.getKeyChar();
+
+        if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z') && (c < '0' || c > '9')) {
+            evt.consume();
+        }
+
+        if (txt.getText().length() >= tamMax) {
+            evt.consume();
+        }
+        
+    }
 }
