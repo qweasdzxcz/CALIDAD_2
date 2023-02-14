@@ -26,14 +26,8 @@ public class editProducto extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         txt_descrip = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
-        txt_precio = new javax.swing.JTextField();
-        txt_stock = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
         btn_actualizar = new javax.swing.JButton();
-        error_stock = new javax.swing.JLabel();
         error_nombre = new javax.swing.JLabel();
-        error_precio = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         cbx_categoria = new javax.swing.JComboBox<>();
         error_categoria = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -84,51 +78,17 @@ public class editProducto extends javax.swing.JDialog {
         jLabel5.setText("Categoria");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 150, 30));
 
-        txt_precio.setBackground(new java.awt.Color(255, 255, 255));
-        txt_precio.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_precioKeyTyped(evt);
-            }
-        });
-        jPanel1.add(txt_precio, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 200, 30));
-
-        txt_stock.setBackground(new java.awt.Color(255, 255, 255));
-        txt_stock.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_stockKeyTyped(evt);
-            }
-        });
-        jPanel1.add(txt_stock, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 350, 200, 30));
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel6.setText("Stock");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 150, 30));
-
         btn_actualizar.setBackground(new java.awt.Color(0, 0, 0));
         btn_actualizar.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btn_actualizar.setForeground(new java.awt.Color(255, 153, 102));
         btn_actualizar.setText("Actualizar");
         btn_actualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(btn_actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 460, 200, 50));
-
-        error_stock.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        error_stock.setForeground(new java.awt.Color(255, 51, 51));
-        error_stock.setText("Error");
-        jPanel1.add(error_stock, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 380, 200, -1));
+        jPanel1.add(btn_actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 370, 200, 50));
 
         error_nombre.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         error_nombre.setForeground(new java.awt.Color(255, 51, 51));
         error_nombre.setText("Error");
         jPanel1.add(error_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 200, -1));
-
-        error_precio.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        error_precio.setForeground(new java.awt.Color(255, 51, 51));
-        error_precio.setText("Error");
-        jPanel1.add(error_precio, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 330, 200, -1));
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel7.setText("Precio");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 150, 30));
 
         cbx_categoria.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.add(cbx_categoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, 200, 30));
@@ -140,38 +100,26 @@ public class editProducto extends javax.swing.JDialog {
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel11.setText("Estado");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, 150, 30));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 150, 30));
 
         cbx_estado.setBackground(new java.awt.Color(255, 255, 255));
         cbx_estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
         cbx_estado.setSelectedIndex(-1);
-        jPanel1.add(cbx_estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 400, 200, 30));
+        jPanel1.add(cbx_estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, 200, 30));
 
         error_estado.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         error_estado.setForeground(new java.awt.Color(255, 51, 51));
         error_estado.setText("Error");
-        jPanel1.add(error_estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 430, 200, -1));
+        jPanel1.add(error_estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 340, 200, -1));
 
+        lbl_id.setForeground(new java.awt.Color(255, 255, 255));
         lbl_id.setText("lbl_id");
-        jPanel1.add(lbl_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, -1, -1));
+        jPanel1.add(lbl_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 520));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 450));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txt_stockKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_stockKeyTyped
-        soloNumeros(txt_stock, 4, evt);
-    }//GEN-LAST:event_txt_stockKeyTyped
-
-    private void txt_precioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_precioKeyTyped
-        if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
-            evt.consume();
-        }
-        if (evt.getKeyChar() == '.' && txt_precio.getText().contains(".")) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txt_precioKeyTyped
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -195,6 +143,8 @@ public class editProducto extends javax.swing.JDialog {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(editProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
@@ -225,23 +175,17 @@ public class editProducto extends javax.swing.JDialog {
     public static javax.swing.JLabel error_categoria;
     public static javax.swing.JLabel error_estado;
     public static javax.swing.JLabel error_nombre;
-    public static javax.swing.JLabel error_precio;
-    public static javax.swing.JLabel error_stock;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     public static javax.swing.JLabel lbl_id;
     public static javax.swing.JTextArea txt_descrip;
     public static javax.swing.JTextField txt_nombre;
-    public static javax.swing.JTextField txt_precio;
-    public static javax.swing.JTextField txt_stock;
     // End of variables declaration//GEN-END:variables
 
     public void soloNumeros(JTextField txt, int tamMax, KeyEvent evt) {

@@ -15,8 +15,10 @@ import Vista.Producto.formProducto;
 import Vista.Producto.editProducto;
 
 import Vista.Ventas.BusquedaProducto;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 public class Principal extends javax.swing.JFrame {
 
@@ -268,11 +270,11 @@ public class Principal extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "NOMBRE", "DESCRIPCION", "CATEGORIA", "PRECIO", "STOCK", "ESTADO"
+                "ID", "NOMBRE", "DESCRIPCION", "CATEGORIA", "STOCK", "ESTADO"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -294,7 +296,6 @@ public class Principal extends javax.swing.JFrame {
             productoTabla.getColumnModel().getColumn(3).setResizable(false);
             productoTabla.getColumnModel().getColumn(4).setResizable(false);
             productoTabla.getColumnModel().getColumn(5).setResizable(false);
-            productoTabla.getColumnModel().getColumn(6).setResizable(false);
         }
 
         panel_productos.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 960, 460));
@@ -843,7 +844,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_buscarClienteKeyTyped
 
     private void txt_buscarProductoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_buscarProductoKeyTyped
-        // TODO add your handling code here:
+        mixto(txt_buscarProducto, 10, evt);
     }//GEN-LAST:event_txt_buscarProductoKeyTyped
 
     private void txt_buscarUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_buscarUsuarioKeyTyped
@@ -1006,4 +1007,33 @@ public class Principal extends javax.swing.JFrame {
     public static javax.swing.JTable usuarioTabla;
     public static javax.swing.JTable ventasTabla;
     // End of variables declaration//GEN-END:variables
+
+    public void soloNumeros(JTextField txt, int tamMax, KeyEvent evt) {
+        char validar = evt.getKeyChar();
+
+        if (validar < '0' || validar > '9') {
+            evt.consume();
+        }
+        if (Character.isDigit(validar)) {
+            if (txt.getText().length() >= tamMax) {
+                evt.consume();
+            }
+        }
+    }
+    
+    public void mixto(JTextField txt, int tamMax, KeyEvent evt) {
+        char c = evt.getKeyChar();
+
+        if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z') && (c < '0' || c > '9')) {
+            evt.consume();
+        }
+
+        if (txt.getText().length() >= tamMax) {
+            evt.consume();
+        }
+        else if(evt.getKeyChar()== 32 ){
+            evt.consume();
+        }
+        
+    }
 }

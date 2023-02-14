@@ -83,13 +83,9 @@ public final class Controlador_Producto implements ActionListener {
     public void ocultarErrores() {
         formProducto.error_nombre.setVisible(false);
         formProducto.error_categoria.setVisible(false);
-        formProducto.error_precio.setVisible(false);
-        formProducto.error_stock.setVisible(false);
 
         editProducto.error_nombre.setVisible(false);
         editProducto.error_categoria.setVisible(false);
-        editProducto.error_precio.setVisible(false);
-        editProducto.error_stock.setVisible(false);
         editProducto.error_estado.setVisible(false);
 
     }
@@ -98,15 +94,11 @@ public final class Controlador_Producto implements ActionListener {
         formProducto.txt_nombre.setText("");
         formProducto.txt_descrip.setText("");
         //formProducto.cbx_categoria.setSelectedIndex(0);
-        formProducto.txt_precio.setText("");
-        formProducto.txt_stock.setText("");
 
         editProducto.txt_nombre.setText("");
         editProducto.txt_descrip.setText("");
         // editProducto.cbx_categoria.setSelectedIndex(0);
         //editProducto.cbx_estado.setSelectedIndex(0);
-        editProducto.txt_precio.setText("");
-        editProducto.txt_stock.setText("");
 
     }
 
@@ -177,16 +169,14 @@ public final class Controlador_Producto implements ActionListener {
     }
 
     public void registrarProducto() {
-        if (validar(formProducto.txt_nombre, formProducto.error_nombre) != false && validar123(formProducto.txt_precio, formProducto.error_precio, "double") && validar123(formProducto.txt_stock, formProducto.error_stock, "int")) {
+        if (validar(formProducto.txt_nombre, formProducto.error_nombre) != false) {
             producto.setNombre(formProducto.txt_nombre.getText());
             producto.setDescripcion(formProducto.txt_descrip.getText());
 
-            producto.setPrecio(Double.parseDouble(formProducto.txt_precio.getText()));
-            producto.setCantidad(Integer.parseInt(formProducto.txt_stock.getText()));
             ComboBox obj = (ComboBox) formProducto.cbx_categoria.getSelectedItem();
             producto.setId_categoria(obj.getId());
             System.out.println(formProducto.txt_nombre.getText() + "\n" + formProducto.txt_descrip.getText() + "\n"
-                    + formProducto.txt_precio.getText() + "\n" + formProducto.txt_stock.getText() + "\n" + obj.getId());
+                    + "\n" + obj.getId());
             productoDAO.agregarProducto(producto);
 
             ocultarErrores();
@@ -201,15 +191,15 @@ public final class Controlador_Producto implements ActionListener {
         List<Producto> listaP = productoDAO.listarProducto();
         if (listaP != null) {
             tablaP = (DefaultTableModel) tabla.getModel();
-            Object[] obj = new Object[7];
+            Object[] obj = new Object[6];
             for (int i = 0; i < listaP.size(); i++) {
                 obj[0] = listaP.get(i).getId();
                 obj[1] = listaP.get(i).getNombre();
                 obj[2] = listaP.get(i).getDescripcion();
                 obj[3] = listaP.get(i).getNomCategoria();
-                obj[4] = listaP.get(i).getPrecio();
-                obj[5] = listaP.get(i).getCantidad();
-                obj[6] = listaP.get(i).getEstado();
+                //obj[4] = listaP.get(i).getPrecio();
+                obj[4] = listaP.get(i).getCantidad();
+                obj[5] = listaP.get(i).getEstado();
                 //System.out.println(obj[0] + "\n" + obj[1] + "\n" + obj[2] + "\n" + obj[3] + "\n" + obj[4] + "\n" + obj[5] + "\n" + obj[6] + "\n");
                 tablaP.addRow(obj);
             }
@@ -232,34 +222,34 @@ public final class Controlador_Producto implements ActionListener {
         editProducto.lbl_id.setText(productoTabla.getValueAt(fila, 0).toString());
         editProducto.txt_nombre.setText(productoTabla.getValueAt(fila, 1).toString());
         editProducto.txt_descrip.setText(productoTabla.getValueAt(fila, 2).toString());
-       //editProducto.cbx_categoria.setSelectedItem(productoTabla.getValueAt(fila, 3).toString());
-        editProducto.txt_stock.setText(productoTabla.getValueAt(fila, 5).toString());
-        editProducto.txt_precio.setText(productoTabla.getValueAt(fila, 4).toString());
-        editProducto.cbx_estado.setSelectedItem(productoTabla.getValueAt(fila, 6).toString());
-        System.out.println("datos enviados");
+        //editProducto.cbx_categoria.setSelectedItem(productoTabla.getValueAt(fila, 3).toString());       
+        editProducto.cbx_estado.setSelectedItem(productoTabla.getValueAt(fila, 5).toString());
+//        System.out.println("datos enviados");
         editProducto.setVisible(true);
     }
 
     public void actualizarProducto() {
         //System.out.println("actulizar funciona");
-        if (validar(editProducto.txt_nombre, editProducto.error_nombre) != false && validar123(editProducto.txt_precio, editProducto.error_precio, "double") && validar123(editProducto.txt_stock, editProducto.error_stock, "int")) {
+        if (validar(editProducto.txt_nombre, editProducto.error_nombre) != false) {
+            
             producto.setNombre(editProducto.txt_nombre.getText());
             producto.setDescripcion(editProducto.txt_descrip.getText());
 
-            producto.setPrecio(Double.parseDouble(editProducto.txt_precio.getText()));
-            producto.setCantidad(Integer.parseInt(editProducto.txt_stock.getText()));
             ComboBox obj = (ComboBox) editProducto.cbx_categoria.getSelectedItem();
             producto.setId_categoria(obj.getId());
             producto.setId(Integer.parseInt(editProducto.lbl_id.getText()));
-//            System.out.println(editProducto.txt_nombre.getText() + "\n" + editProducto.txt_descrip.getText() + "\n"
-//                    + editProducto.txt_precio.getText() + "\n" + editProducto.txt_stock.getText() + "\n" + obj.getId());
+            producto.setEstado(editProducto.cbx_estado.getSelectedItem().toString());
+            System.out.println(editProducto.txt_nombre.getText() + "\n" + editProducto.txt_descrip.getText() + "\n" +editProducto.cbx_estado.getSelectedItem().toString()
+                    +  "\n cat : " + obj.getId());
             int rpta = productoDAO.actualizarProducto(producto);
             editProducto.setVisible(false);
             editProducto.setVisible(false);
             ocultarErrores();
             limpiarCampos();
             if (rpta != 0) {
+                listarProducto(ventasTabla);
                 JOptionPane.showMessageDialog(null, "Actualizado");
+                
             } else {
                 JOptionPane.showMessageDialog(null, "Ocurrio un error, no se pudo actulizar");
             }
@@ -277,23 +267,23 @@ public final class Controlador_Producto implements ActionListener {
             listarProducto(principal.productoTabla);
         }
     }
-    
+
     public void tablaDatosProducto(JTable tabla) {
         limpiarTablaProducto();
-        
+
         String valor = txt_buscarProducto.getText();
         List<Producto> listaCli = productoDAO.buscarProducto(valor);
         //System.out.println("filtro : " + filtro + "\n" + "valor : " + a);
         tablaP = (DefaultTableModel) tabla.getModel();
-        Object[] obj = new Object[7];
+        Object[] obj = new Object[6];
         for (int i = 0; i < listaCli.size(); i++) {
             obj[0] = listaCli.get(i).getId();
             obj[1] = listaCli.get(i).getNombre();
             obj[2] = listaCli.get(i).getDescripcion();
             obj[3] = listaCli.get(i).getNomCategoria();
-            obj[4] = listaCli.get(i).getPrecio();
-            obj[5] = listaCli.get(i).getCantidad();
-            obj[6] = listaCli.get(i).getEstado();
+            //obj[4] = listaCli.get(i).getPrecio();
+            obj[4] = listaCli.get(i).getCantidad();
+            obj[5] = listaCli.get(i).getEstado();
             tablaP.addRow(obj);
             //System.out.println(obj[0] + "\n" + obj[1] + "\n" + obj[2] + "\n" + obj[3] + "\n" + obj[4] + "\n" + obj[5]);
         }
@@ -320,7 +310,7 @@ public final class Controlador_Producto implements ActionListener {
             }
         };
         txt_buscarProducto.addKeyListener(evento);
-        
+
         //busC.txt_valorCli.addKeyListener(evento);
     }
 //
