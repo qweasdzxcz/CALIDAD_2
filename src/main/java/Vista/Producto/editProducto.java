@@ -4,6 +4,7 @@ import Vista.Principal;
 import java.awt.event.KeyEvent;
 import javax.swing.JTextField;
 import Controlador.Controlador_Producto;
+import javax.swing.JTextArea;
 
 public class editProducto extends javax.swing.JDialog {
 
@@ -59,6 +60,11 @@ public class editProducto extends javax.swing.JDialog {
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 150, 30));
 
         txt_nombre.setBackground(new java.awt.Color(255, 255, 255));
+        txt_nombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_nombreKeyTyped(evt);
+            }
+        });
         jPanel1.add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 200, 30));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -70,6 +76,11 @@ public class editProducto extends javax.swing.JDialog {
         txt_descrip.setLineWrap(true);
         txt_descrip.setRows(5);
         txt_descrip.setWrapStyleWord(true);
+        txt_descrip.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_descripKeyTyped(evt);
+            }
+        });
         jScrollPane1.setViewportView(txt_descrip);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, -1, -1));
@@ -120,6 +131,14 @@ public class editProducto extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txt_nombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreKeyTyped
+        soloLetras(txt_nombre, 30, evt);
+    }//GEN-LAST:event_txt_nombreKeyTyped
+
+    private void txt_descripKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_descripKeyTyped
+        mixtoArea(txt_descrip, 200, evt);
+    }//GEN-LAST:event_txt_descripKeyTyped
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -187,7 +206,36 @@ public class editProducto extends javax.swing.JDialog {
     public static javax.swing.JTextArea txt_descrip;
     public static javax.swing.JTextField txt_nombre;
     // End of variables declaration//GEN-END:variables
+    
+    public void soloLetras(JTextField txt, int tamMax, KeyEvent evt) {
+        char c = evt.getKeyChar();
 
+        if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) {
+            evt.consume();
+        }
+        if (Character.isLetter(c)) {
+            if (txt.getText().length() >= tamMax) {
+                evt.consume();
+            }
+        }
+    }
+    
+    public void mixtoArea(JTextArea txt, int tamMax, KeyEvent evt) {
+        char c = evt.getKeyChar();
+
+        if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z') && (c < '0' || c > '9')) {
+            evt.consume();
+        }
+
+        if (txt.getText().length() >= tamMax) {
+            evt.consume();
+        }
+        else if(evt.getKeyChar()== 32 ){
+            evt.consume();
+        }
+        
+    }
+    
     public void soloNumeros(JTextField txt, int tamMax, KeyEvent evt) {
         char validar = evt.getKeyChar();
 

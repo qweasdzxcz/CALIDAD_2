@@ -109,7 +109,7 @@ public class formProducto extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txt_nombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreKeyTyped
-        mixto(txt_nombre, 45, evt);
+        soloLetras(txt_nombre, 45, evt);
     }//GEN-LAST:event_txt_nombreKeyTyped
 
     private void txt_descripKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_descripKeyTyped
@@ -176,7 +176,20 @@ public class formProducto extends javax.swing.JDialog {
     public static javax.swing.JTextArea txt_descrip;
     public static javax.swing.JTextField txt_nombre;
     // End of variables declaration//GEN-END:variables
+    
+    public void soloLetras(JTextField txt, int tamMax, KeyEvent evt) {
+        char c = evt.getKeyChar();
 
+        if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) {
+            evt.consume();
+        }
+        if (Character.isLetter(c)) {
+            if (txt.getText().length() >= tamMax) {
+                evt.consume();
+            }
+        }
+    }
+    
     public void soloNumeros(JTextField txt, int tamMax, KeyEvent evt) {
         char validar = evt.getKeyChar();
 

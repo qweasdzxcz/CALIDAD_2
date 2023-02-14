@@ -136,17 +136,6 @@ public class Principal extends javax.swing.JFrame {
         btn_nuevoCliente = new javax.swing.JButton();
         txt_buscarCliente = new javax.swing.JTextField();
         BusquedaApellidoPaternoCLiente = new javax.swing.JLabel();
-        panel_configuracion = new javax.swing.JPanel();
-        panel_principal = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jPanel8 = new javax.swing.JPanel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
 
         popUsuario.setBorder(null);
 
@@ -741,6 +730,11 @@ public class Principal extends javax.swing.JFrame {
         panel_cat.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 60));
 
         txt_nombreCat.setBackground(new java.awt.Color(255, 255, 255));
+        txt_nombreCat.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_nombreCatKeyTyped(evt);
+            }
+        });
         panel_cat.add(txt_nombreCat, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 170, 30));
 
         error_estadoCat.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -863,65 +857,6 @@ public class Principal extends javax.swing.JFrame {
 
         tabed.addTab("tab8", panel_clientes);
 
-        panel_configuracion.setBackground(new java.awt.Color(255, 255, 255));
-        tabed.addTab("tab7", panel_configuracion);
-
-        panel_principal.setBackground(new java.awt.Color(255, 255, 255));
-        panel_principal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel6.setBackground(new java.awt.Color(255, 153, 153));
-        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setText("Productos");
-        jPanel6.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 160, 30));
-
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setText("10");
-        jPanel6.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 160, 30));
-
-        panel_principal.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 160, 100));
-
-        jPanel7.setBackground(new java.awt.Color(255, 153, 153));
-        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setText("10");
-        jPanel7.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 160, 30));
-
-        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel16.setText("Ventas HOY");
-        jPanel7.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 160, 30));
-
-        panel_principal.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, 160, 100));
-
-        jPanel8.setBackground(new java.awt.Color(255, 153, 153));
-        jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel17.setText("Clientes");
-        jPanel8.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 160, 30));
-
-        jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel20.setText("10");
-        jPanel8.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 160, 30));
-
-        panel_principal.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 70, 160, 100));
-
-        tabed.addTab("tab3", panel_principal);
-
         panel_fondo.add(tabed, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 1020, 650));
 
         getContentPane().add(panel_fondo, java.awt.BorderLayout.CENTER);
@@ -954,16 +889,20 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_buscarClienteKeyTyped
 
     private void txt_buscarProductoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_buscarProductoKeyTyped
-        mixto(txt_buscarProducto, 10, evt);
+        soloLetras(txt_buscarProducto, 10, evt);
     }//GEN-LAST:event_txt_buscarProductoKeyTyped
 
     private void txt_buscarUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_buscarUsuarioKeyTyped
-        // TODO add your handling code here:
+        soloLetras(txt_buscarUsuario, 10, evt);
     }//GEN-LAST:event_txt_buscarUsuarioKeyTyped
 
     private void txt_cantidadEntradaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cantidadEntradaKeyTyped
         soloNumeros(txt_cantidadEntrada, 3, evt);
     }//GEN-LAST:event_txt_cantidadEntradaKeyTyped
+
+    private void txt_nombreCatKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreCatKeyTyped
+        soloLetras(txt_nombreCat, 45, evt);
+    }//GEN-LAST:event_txt_nombreCatKeyTyped
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -1068,18 +1007,9 @@ public class Principal extends javax.swing.JFrame {
     public static javax.swing.JLabel error_estadoCat;
     public static javax.swing.JLabel error_nombreCat;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -1107,12 +1037,10 @@ public class Principal extends javax.swing.JFrame {
     public static javax.swing.JPanel panel_cat;
     public static javax.swing.JPanel panel_categorias;
     public static javax.swing.JPanel panel_clientes;
-    public static javax.swing.JPanel panel_configuracion;
     public static javax.swing.JPanel panel_entradas;
     private javax.swing.JPanel panel_fondo;
     private javax.swing.JPanel panel_menu;
     public static javax.swing.JPanel panel_nuevasVentas;
-    public static javax.swing.JPanel panel_principal;
     public static javax.swing.JPanel panel_productos;
     public static javax.swing.JPanel panel_usuarios;
     public static javax.swing.JPanel panel_ventas;
@@ -1147,7 +1075,18 @@ public class Principal extends javax.swing.JFrame {
             }
         }
     }
-    
+    public void soloLetras(JTextField txt, int tamMax, KeyEvent evt) {
+        char c = evt.getKeyChar();
+
+        if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) {
+            evt.consume();
+        }
+        if (Character.isLetter(c)) {
+            if (txt.getText().length() >= tamMax) {
+                evt.consume();
+            }
+        }
+    }
     public void mixto(JTextField txt, int tamMax, KeyEvent evt) {
         char c = evt.getKeyChar();
 
